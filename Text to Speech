@@ -1,0 +1,28 @@
+import pyttsx3
+import tkinter as tk
+from tkinter import scrolledtext
+
+def speak():
+    text = text_area.get("1.0", tk.END).strip()
+    if text:
+        engine.say(text)
+        engine.runAndWait()
+
+# Initialize text-to-speech engine
+engine = pyttsx3.init()
+
+# Create GUI window
+root = tk.Tk()
+root.title("Text to Speech Converter")
+root.geometry("400x300")
+
+# Text area
+text_area = scrolledtext.ScrolledText(root, wrap=tk.WORD, width=50, height=10)
+text_area.pack(pady=10)
+
+# Speak button
+speak_button = tk.Button(root, text="Speak", command=speak)
+speak_button.pack(pady=10)
+
+# Run the GUI loop
+root.mainloop()
